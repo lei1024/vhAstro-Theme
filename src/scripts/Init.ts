@@ -1,6 +1,6 @@
 import { inRouter, outRouter } from "../utils/updateRouter";
-// 初始化文章功能脚本
-import ArticleInit from "../scripts/Article";
+// 初始化文章代码块
+import codeInit from "../scripts/Code";
 // 初始化视频播放器
 import videoInit from "../scripts/Video";
 // 初始化音乐播放器
@@ -17,6 +17,8 @@ import initLinkCurrent from "../scripts/Header";
 import initWebSiteTime from "../scripts/Footer";
 // 友情链接初始化
 import initLinks from "../scripts/Links";
+// 朋友圈 RSS 初始化
+import initFriends from "../scripts/Friends";
 // 动态说说初始化
 import initTalking from "../scripts/Talking";
 // 文章评论初始化
@@ -27,7 +29,7 @@ import initMobileSidebar from "../scripts/MobileSidebar";
 import GoogleAdInit from "../scripts/GoogleAd";
 // Han Analytics 统计
 import SITE_INFO from "../config";
-const { HanAnalytics } = SITE_INFO;
+const { HanAnalytics, LenisScroll } = SITE_INFO;
 import { LoadScript } from "../utils/index";
 
 // ============================================================
@@ -36,6 +38,8 @@ import { LoadScript } from "../utils/index";
 const videoList: any[] = [];
 const MusicList: any[] = [];
 const indexInit = async (only: boolean = true) => {
+  // 鼠标滚动阻尼效果
+  LenisScroll && only && (await import('./Lenis')).default();
   // 预加载搜索数据
   only && searchFn("");
   // 初始化搜索功能
@@ -48,14 +52,16 @@ const indexInit = async (only: boolean = true) => {
   only && initMobileSidebar();
   // 顶部导航 Current 状态
   initLinkCurrent()
+  // 初始化文章代码块
+  codeInit();
   // 文章评论初始化
   initComment();
-  // 初始化文章功能脚本
-  ArticleInit();
   // 图片懒加载初始化
   vhLzImgInit();
   // 友情链接初始化
   initLinks();
+  // 朋友圈 RSS 初始化
+  initFriends();
   // 动态说说初始化
   initTalking();
   // Google 广告

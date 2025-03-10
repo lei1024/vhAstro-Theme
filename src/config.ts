@@ -9,6 +9,7 @@ export default {
   // 导航栏 (新窗口打开 newWindow: true)
   Navs: [
     { text: '朋友', link: '/links', icon: '/assets/images/svg/Navs/links.svg' },
+    { text: '圈子', link: '/friends', icon: '/assets/images/svg/Navs/friends.svg' },
     { text: '动态', link: '/talking', icon: '/assets/images/svg/Navs/talking.svg' },
     { text: '昔日', link: '/archives', icon: '/assets/images/svg/Navs/archives.svg' },
     { text: '留言', link: '/message', icon: '/assets/images/svg/Navs/message.svg' },
@@ -49,4 +50,6 @@ export default {
     // 文章页广告(不填不开启)
     articleAD_Slot: `<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxx" data-ad-slot="xxxxxx" data-ad-format="auto" data-full-width-responsive="true"></ins>`
   },
+  // 阻尼滚动效果开关
+  LenisScroll: true
 }
