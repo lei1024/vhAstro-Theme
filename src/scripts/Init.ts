@@ -1,36 +1,38 @@
-import { inRouter, outRouter } from "../utils/updateRouter";
+import { inRouter, outRouter } from "@/utils/updateRouter";
 // 初始化文章代码块
-import codeInit from "../scripts/Code";
+import codeInit from "@/scripts/Code";
 // 初始化视频播放器
-import videoInit from "../scripts/Video";
+import videoInit from "@/scripts/Video";
 // 初始化音乐播放器
-import musicInit from "../scripts/Music";
+import musicInit from "@/scripts/Music";
+// 初始化 LivePhoto
+import livePhotoInit from '@/scripts/LivePhoto'
 // 初始化BackTop组件
-import BackTopInitFn from "../scripts/BackTop";
+import BackTopInitFn from "@/scripts/BackTop";
 // 搜索
-import { searchFn, vhSearchInit } from "../scripts/Search";
+import { searchFn, vhSearchInit } from "@/scripts/Search";
 // 图片懒加载
-import vhLzImgInit from "../scripts/vhLazyImg";
+import vhLzImgInit from "@/scripts/vhLazyImg";
 // 顶部导航 Current 状态
-import initLinkCurrent from "../scripts/Header";
+import initLinkCurrent from "@/scripts/Header";
 // 底部网站运行时间
-import initWebSiteTime from "../scripts/Footer";
+import initWebSiteTime from "@/scripts/Footer";
 // 友情链接初始化
-import initLinks from "../scripts/Links";
+import initLinks from "@/scripts/Links";
 // 朋友圈 RSS 初始化
-import initFriends from "../scripts/Friends";
+import initFriends from "@/scripts/Friends";
 // 动态说说初始化
-import initTalking from "../scripts/Talking";
+import initTalking from "@/scripts/Talking";
 // 文章评论初始化
-import initComment from "../scripts/Comment";
+import initComment from "@/scripts/Comment";
 // 移动端侧边栏初始化
-import initMobileSidebar from "../scripts/MobileSidebar";
+import initMobileSidebar from "@/scripts/MobileSidebar";
 // Google 广告
-import GoogleAdInit from "../scripts/GoogleAd";
+import GoogleAdInit from "@/scripts/GoogleAd";
 // Han Analytics 统计
-import SITE_INFO from "../config";
-const { HanAnalytics, LenisScroll } = SITE_INFO;
-import { LoadScript } from "../utils/index";
+import HanAnalyticsInit from "@/scripts/HanAnalytics";
+// SmoothScroll 滚动优化
+import SmoothScroll from "@/scripts/Smoothscroll";
 
 // ============================================================
 
@@ -38,8 +40,6 @@ import { LoadScript } from "../utils/index";
 const videoList: any[] = [];
 const MusicList: any[] = [];
 const indexInit = async (only: boolean = true) => {
-  // 鼠标滚动阻尼效果
-  LenisScroll && only && (await import('./Lenis')).default();
   // 预加载搜索数据
   only && searchFn("");
   // 初始化搜索功能
@@ -50,6 +50,8 @@ const indexInit = async (only: boolean = true) => {
   only && BackTopInitFn();
   // 移动端侧边栏初始化
   only && initMobileSidebar();
+  // SmoothScroll 滚动优化
+  only && SmoothScroll();
   // 顶部导航 Current 状态
   initLinkCurrent()
   // 初始化文章代码块
@@ -66,12 +68,14 @@ const indexInit = async (only: boolean = true) => {
   initTalking();
   // Google 广告
   GoogleAdInit();
+  // Han Analytics 统计
+  HanAnalyticsInit();
   // 文章视频播放器初始化
   videoInit(videoList);
   // 文章音乐播放器初始化
   musicInit(MusicList);
-  // Han Analytics 统计
-  HanAnalytics.enable && LoadScript(`${HanAnalytics.server}/tracker.min.js`, [{ k: "data-website-id", v: HanAnalytics.siteId }]);
+  // 初始化 LivePhoto
+  livePhotoInit();
 };
 
 export default () => {
@@ -88,10 +92,6 @@ export default () => {
     MusicList.forEach((i: any) => i.destroy());
     MusicList.length = 0;
   });
-  console.log(
-    "%c\u4E3B\u9898\uFF1AvhAstro-Theme%c https://github.com/uxiaohan/vhAstro-Theme ",
-    "background: linear-gradient(90deg, #030307, #1a1a2e); color: #fadfa3; padding: 4px;",
-    "background: #EDEDED; padding: 4px;"
-  );
+  console.log("%c🌻 程序：Astro | 主题：vhAstro-Theme | 作者：Han | Github：https://github.com/uxiaohan/vhAstro-Theme 🌻", "color:#fff; background: linear-gradient(270deg, #18d7d3, #68b7dd, #8695e6, #986fee); padding: 8px 15px; border-radius: 8px");
   console.log("%c\u521D\u59CB\u5316\u5B8C\u6BD5.", "color: #ffffff; background: #000; padding:5px");
 }
