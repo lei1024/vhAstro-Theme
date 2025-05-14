@@ -30,7 +30,7 @@ const findAndModifyElements = (arr: any[], keyword: string) => {
 // 渲染页面
 let searchHTML = '';
 const renderSearch = (arr: any[]) => {
-  searchHTML = !arr.length ? '<em></em>' : arr.map(i => `<a class="vh-search-item" href="${i.url}"><span>${i.title}</span><p>${i.content}</p></a>`).join('');
+  searchHTML = !arr.length ? '<em></em>' : arr.map(i => `<a class="vh-search-item" href="${i.url}"><span class="vh-ellipsis">${i.title}</span><p class="vh-ellipsis line-3">${i.content}</p></a>`).join('');
   document.querySelector('.vh-header>.main>.vh-search>main>.vh-search-list')!.innerHTML = searchHTML;
 }
 
@@ -44,7 +44,7 @@ const searchInputChange = (v: any) => {
 
 // 初始化搜索框
 const vhSearchInit = () => {
-  const searchDOM: any = document.querySelector(".vh-header>.main>.nav-btn>span.search-btn");
+  const searchDOM: any = document.querySelector(".vh-header>.main>nav>span.search-btn");
   const searchMainDOM: any = document.querySelector(".vh-header>.main>.vh-search>main");
   const searchListDOM: any = document.querySelector(".vh-header>.main>.vh-search");
   const addActive = () => setTimeout(() => {

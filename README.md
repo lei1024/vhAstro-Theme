@@ -8,13 +8,14 @@
 
 官方文档 ➡️ [vhAstro-Theme](https://www.vvhan.com/article/astro-theme-vhastro-theme)
 
-![Astro主题 vhAstro-Theme](https://i0.wp.com/uxiaohan.github.io/v2/2025/03/1740977096666.webp)
+![Astro主题 vhAstro-Theme](https://i0.wp.com/uxiaohan.github.io/v2/2025/04/1743737394560.webp)
 
 ## ✨ 功能特性
 
 - [x] 简洁的响应式设计
 - [x] 流畅的动画和页面过渡
-- [x] 丝滑的阻尼滚动效果（自定义开启/关闭）
+- [x] 丝滑的阻尼滚动效果
+- [x] 顶部Banner
 - [x] 两列布局
 - [x] 阅读时间
 - [x] 字数统计
@@ -25,8 +26,9 @@
 - [x] LivePhoto
 - [x] LaTex 数学公式
 - [x] 赞赏功能
-- [x] Twikoo 评论
+- [x] 评论 - 内置【Twikoo、Waline】
 - [x] 本地搜索
+- [x] 公告
 - [x] 标签
 - [x] 分类
 - [x] 归档
@@ -38,6 +40,7 @@
 - [x] 推荐文章
 - [x] 置顶文章
 - [x] 谷歌广告
+- [x] 侧边栏选择性展示
 - [x] 内置 404 页面
 - [x] Sitemap 支持
 - [x] RSS 支持
@@ -56,20 +59,29 @@
 - 通过配置文件 `src/config.ts` 自定义博客
 - 执行 pnpm newpost '文章标题' 创建新文章，并在 src/content/posts/ 目录中编辑
 - 参考官方指南将博客部署至 Vercel, Netlify,Cloudflare Pages, GitHub Pages 等
-- 部署前需编辑 `astro.config.mjs` 中的站点设置。
 
-### 使用命令
+### Vercel 自动部署
+
+[![vhAstro-Theme](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/uxiaohan/vhAstro-Theme)
+
+### Cloudflare Pages 自动部署
+
+[![vhAstro-Theme](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/deploy-to-workers&repository=https://github.com/uxiaohan/vhAstro-Theme)
+
+### 使用命令拉取模板
 
 ```bash
-# pnpm
-pnpm create astro@latest --template uxiaohan/vhAstro-Theme
-
-# yarn
-yarn create astro --template uxiaohan/vhAstro-Theme
-
-# npm
-npm create astro@latest -- --template uxiaohan/vhAstro-Theme
+# 使用 pnpm
+pnpm create astro@latest --template uxiaohan/vhAstro-Theme astro-blog
+# 或者 yarn
+yarn create astro --template uxiaohan/vhAstro-Theme astro-blog
+# 或者 npm
+npm create astro@latest -- --template uxiaohan/vhAstro-Theme astro-blog
+# 进入项目目录
+cd astro-blog
 ```
+
+### 本地开发
 
 ```bash
 # 安装依赖
@@ -81,6 +93,10 @@ pnpm build
 # 创建新文章
 pnpm newpost '文章标题'
 ```
+
+### ⚠️ Hexo 迁移 Astro 方法
+
+> 将 `Hexo` 博客的 `src/_posts/` 目录下的文章文件，复制到 `Astro` 的 `src/content/blog/` 目录下即可，然后自定义 `src/config.ts` 配置文件去自定义博客。<br>⚠️ `Hexo` 的部署、使用、自动化部署等方法 完全适用于 `Astro` 博客！<br>🎉 此时，你已成功迁移 Hexo 博客至 Astro 博客！
 
 ## 🍬 特色页面
 
@@ -167,7 +183,7 @@ export default {
 };
 ```
 
-## ⚙️ 文章格式
+## 📄 文章格式
 
 ```md
 ---
@@ -230,6 +246,120 @@ comment: false # 关闭页面评论（默认开启）
 ├── astro.config.mjs    => Astro 配置
 ├── package.json        => 依赖管理
 └── pnpm-lock.yaml      => 依赖锁定文件
+```
+
+## ⚙️ 项目配置
+```js
+export default {
+  Title: '韩小韩博客',
+  Site: 'https://www.vvhan.com',
+  Subtitle: '不曾与你分享的时间,我在进步.',
+  Description: '韩小韩博客 专注于前开发与相关技术的实战分享，涵盖Vue框架、Node.js、Serverless等，并涉及Node、Python、Linux、Docker等领域。同时，博客也分享作者的生活、音乐和旅行的热爱。',
+  Author: '.𝙃𝙖𝙣',
+  Motto: '运气是计划之外的东西.',
+  Avatar: 'https://q1.qlogo.cn/g?b=qq&nk=1655466387&s=640',
+  // Cover 网站缩略图
+  Cover: '/assets/images/banner/072c12ec85d2d3b5.webp',
+  // 网站创建时间
+  CreateTime: '2021-09-01',
+  // 首页打字机文案列表
+  TypeWriteList: [
+    '不曾与你分享的时间,我在进步.',
+    "I am making progress in the time I haven't shared with you.",
+  ],
+  // 顶部 Banner 配置
+  HomeBanner: {
+    enable: true,
+    cover: '/assets/images/home-banner.webp'
+  },
+  // 博客主题配置
+  Theme: {
+    // 颜色请用 16 进制颜色码
+    // 主题颜色
+    "--vh-main-color": "#01C4B6",
+    // 字体颜色
+    "--vh-font-color": "#34495e",
+    // 侧边栏宽度
+    "--vh-aside-width": "318px",
+    // 全局圆角
+    "--vh-main-radius": "0.88rem",
+    // 主体内容宽度
+    "--vh-main-max-width": "1458px",
+  },
+  // 导航栏 (新窗口打开 newWindow: true)
+  Navs: [
+    // 仅支持 SVG 且 SVG 需放在 public/assets/images/svg/ 目录下，填入文件名即可（封装了 SVG 组件 为了极致压缩 SVG）
+    // 建议使用 https://tabler.io/icons 直接下载 SVG
+    { text: '朋友', link: '/links', icon: 'Nav_friends' },
+    { text: '圈子', link: '/friends', icon: 'Nav_rss' },
+    { text: '动态', link: '/talking', icon: 'Nav_talking' },
+    { text: '昔日', link: '/archives', icon: 'Nav_archives' },
+    { text: '留言', link: '/message', icon: 'Nav_message' },
+    { text: '关于', link: '/about', icon: 'Nav_about' },
+    { text: 'API', link: 'https://api.vvhan.com/', target: true, icon: 'Nav_link' },
+  ],
+  // 侧边栏个人网站
+  WebSites: [
+    // 仅支持 SVG 且 SVG 需放在 public/assets/images/svg/ 目录下，填入文件名即可（封装了 SVG 组件 为了极致压缩 SVG）
+    // 建议使用 https://tabler.io/icons 直接下载 SVG
+    { text: 'Github', link: 'https://github.com/uxiaohan', icon: 'WebSite_github' },
+    { text: '韩小韩API', link: 'https://api.vvhan.com', icon: 'WebSite_api' },
+    { text: '每日热榜', link: 'https://hot.vvhan.com', icon: 'WebSite_hot' },
+    { text: '骤雨重山图床', link: 'https://wp-cdn.4ce.cn', icon: 'WebSite_img' },
+    { text: 'HanAnalytics', link: 'https://analytics.vvhan.com', icon: 'WebSite_analytics' },
+  ],
+  // 侧边栏展示
+  AsideShow: {
+    // 是否展示个人网站
+    WebSitesShow: true,
+    // 是否展示分类
+    CategoriesShow: true,
+    // 是否展示个人标签
+    TagsShow: true,
+    // 是否展示推荐文章
+    recommendArticleShow: true
+  },
+  // DNS预解析地址
+  DNSOptimization: [
+    'https://i0.wp.com',
+    'https://analytics.vvhan.com',
+    'https://vh-api.4ce.cn',
+    'https://registry.npmmirror.com',
+    'https://pagead2.googlesyndication.com'
+  ],
+  // 博客音乐组件解析接口
+  vhMusicApi: 'https://vh-api.4ce.cn/blog/meting',
+  // 评论组件（只允许同时开启一个）
+  Comment: {
+    // Twikoo 评论
+    Twikoo: {
+      enable: false,
+      envId: ''
+    },
+    // Waline 评论
+    Waline: {
+      enable: false,
+      serverURL: ''
+    }
+  },
+  // Han Analytics 统计（https://github.com/uxiaohan/HanAnalytics）
+  HanAnalytics: { enable: true, server: 'https://analytics.vvhan.com', siteId: 'Hello-HanHexoBlog' },
+  // Google 广告
+  GoogleAds: {
+    ad_Client: 'ca-pub-xxxxxxxxxx',
+    // 侧边栏广告(不填不开启)
+    asideAD_Slot: `<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="xxxxxx" data-ad-format="auto" data-full-width-responsive="true"></ins>`,
+    // 文章页广告(不填不开启)
+    articleAD_Slot: `<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxx" data-ad-slot="xxxxxx" data-ad-format="auto" data-full-width-responsive="true"></ins>`
+  },
+  // 文章内赞赏码
+  Reward: {
+    // 支付宝收款码
+    AliPay: '/assets/images/alipay.webp',
+    // 微信收款码
+    WeChat: '/assets/images/wechat.webp'
+  }
+}
 ```
 
 ## ✨ 反馈和建议

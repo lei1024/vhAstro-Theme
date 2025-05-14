@@ -1,16 +1,16 @@
 .vh-comment {
   box-sizing: border-box;
-  padding: 2rem 1rem 1rem;
+  padding: 2rem 1rem 6.88rem;
   width: 100%;
   height: max-content;
   border-radius: 0.5rem;
-  background-color: #fff;
-  box-shadow: 0 3px 8px 6px rgba(7, 17, 27, 0.05);
+  background-color: var(--vh-white-color);
+  box-shadow: var(--vh-box-shadow);
   overflow: hidden;
 
   // 评论样式
   .twikoo {
-    font-size: var(--vh-size-h2);
+    font-size: 0.88rem;
 
     img:not(.tk-avatar-img) {
       cursor: pointer;
@@ -28,7 +28,7 @@
       ol {
         li {
           color: #33333388;
-          font-size: var(--vh-size-span);
+          font-size: 0.875rem;
           line-height: 1.6;
         }
 
@@ -39,7 +39,7 @@
 
         :not(pre) {
           &>code {
-            background-color: var(--vh-black-16);
+            background-color: var(--vh-font-16);
             padding: .125rem .375rem;
             font-size: 0.8125rem;
           }
@@ -53,19 +53,19 @@
       }
 
       p {
-        color: var(--vh-black-100);
+        color: var(--vh-font-color);
         font-weight: 400;
-        font-size: var(--vh-size-span);
+        font-size: 0.875rem;
         line-height: 28px;
 
 
         a {
-          color: #280F25;
-          box-shadow: inset 0 -.12rem #60a5fa;
+          color: var(--vh-font-56);
+          box-shadow: inset 0 -.12rem var(--vh-main-color);
           transition: box-shadow .2s ease-in-out, color .2s ease-in-out;
 
           &:hover {
-            box-shadow: inset 0 -1.5rem #60a5fa66;
+            box-shadow: inset 0 -1.5rem var(--vh-main-color-38);
           }
         }
       }
@@ -78,7 +78,7 @@
       }
 
       p {
-        color: #fff;
+        color: var(--vh-white-color);
       }
 
       .tk-admin-warn p {
@@ -190,7 +190,7 @@
                 width: 0.8rem;
                 height: 0.8rem;
                 border-radius: 50%;
-                background: #fff url("/public/assets/images/admin.svg") no-repeat;
+                background: var(--vh-white-color) url("/public/assets/images/admin.svg") no-repeat;
                 background-size: cover;
               }
             }
@@ -215,7 +215,7 @@
 
                 &>.tk-nick {
                   position: relative;
-                  color: var(--vh-black-100);
+                  color: var(--vh-font-color);
                   line-height: 1.18rem;
 
                   &.tk-nick-link {
@@ -229,7 +229,7 @@
                       bottom: 0;
                       width: 0;
                       height: 1px;
-                      background-color: var(--vh-black-88);
+                      background-color: var(--vh-font-88);
                       transition: all 0.28s;
                     }
 
@@ -292,7 +292,7 @@
                 box-sizing: border-box;
                 padding: 4px;
                 border-radius: 0.2rem;
-                background-color: var(--vh-black-6);
+                background-color: var(--vh-font-6);
               }
             }
 
@@ -317,6 +317,143 @@
           gap: 0;
         }
       }
+    }
+  }
+
+  div[data-waline] {
+    // 头像尺寸和圆角
+    --waline-avatar-size: 2.56rem;
+    --waline-avatar-radius: 0.58rem;
+    font-size: 0.88rem;
+
+    .wl-comment {
+      .wl-panel {
+        .wl-header {
+          label {
+            padding: 0.36rem 0.28rem;
+            font-size: 0.8rem;
+          }
+        }
+
+        .wl-input {
+          font-size: 0.688rem;
+        }
+      }
+    }
+
+    .wl-cards {
+      &>.wl-card-item {
+        padding-left: 0;
+
+        .wl-card {
+          padding-bottom: 0;
+
+          &>.wl-head {
+            .wl-nick {
+              color: var(--vh-font-color);
+              font-size: 0.88rem;
+              line-height: 1.18;
+
+              &::after {
+                position: absolute;
+                content: "";
+                right: 0;
+                left: auto;
+                bottom: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--vh-font-88);
+                transition: all 0.28s;
+              }
+
+              &:hover {
+                &::after {
+                  left: 0;
+                  right: auto;
+                  width: 100%;
+                }
+              }
+            }
+
+            .wl-badge {
+              color: #9999ff;
+              font-weight: 600;
+              border-color: #9999ff;
+            }
+          }
+
+          // &>.wl-meta {}
+
+          &>.wl-content {
+            padding: 0;
+
+            p {
+              padding: 0.18rem 0;
+              color: var(--vh-font-color);
+              font-size: 0.875rem;
+              line-height: 1.75rem;
+            }
+
+            &>p {
+              &:nth-of-type(1) {
+                padding: 0;
+              }
+
+              a {
+                color: var(--vh-font-color);
+                font-size: 0.76rem;
+                font-weight: 700;
+              }
+            }
+          }
+
+          &>.wl-quote {
+            border-left: solid 0.25rem var(--vh-main-color-38);
+          }
+        }
+
+        // item 中 wl-card 虚线间距
+        &>.wl-card {
+          padding-bottom: 1.25rem;
+          border-bottom-color: var(--vh-font-16);
+        }
+      }
+    }
+
+    .wl-emoji-popup .wl-tab-wrapper {
+      max-height: 126.88px;
+    }
+
+    // 图片
+    img {
+      &:not(.wl-user-avatar, .wl-reaction-list img, .wl-panel img, .tk-owo-emotion, .wl-emoji, .wl-login-nick>img) {
+        box-sizing: border-box;
+        padding: 0.188rem;
+        margin: 0.188rem 0;
+        border: solid 1px var(--vh-font-16);
+        display: block;
+        max-height: 66px;
+        object-fit: contain;
+        cursor: zoom-in;
+        cursor: -moz-zoom-in;
+        cursor: -webkit-zoom-in;
+      }
+
+      &.tk-owo-emotion,
+      &.wl-emoji {
+        height: 1.68rem;
+        object-fit: contain;
+        cursor: default;
+      }
+    }
+
+    a {
+      color: var(--vh-font-56);
+      line-height: 1.288;
+    }
+
+    code {
+      font-size: 0.68rem;
     }
   }
 }
